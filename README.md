@@ -51,11 +51,35 @@ Both services are configured to run automatically when you start the Repl.
 
 ## 📊 How It Works
 
-1. Webcam captures your facial expressions every 2 seconds
-2. DeepFace AI analyzes emotions (happy, sad, angry, fear, surprise, neutral, disgust)
-3. Emotions are mapped to stress levels
-4. Real-time visualization with glowing borders and stress bar
-5. Historical chart tracks your emotional journey
+1. **Webcam** captures your facial expressions every 2 seconds
+2. **Microphone** (optional) captures voice tone for enhanced analysis
+3. **DeepFace AI** analyzes facial emotions (happy, sad, angry, fear, surprise, neutral, disgust)
+4. **Librosa** processes voice features (energy, pitch, stress indicators)
+5. **Fusion Algorithm** combines both modalities into unified stress index
+6. Real-time visualization with glowing borders and stress bar
+7. Historical chart tracks your emotional journey over the session
+
+## 🌐 Browser Support
+
+- **Recommended**: Chrome, Edge, or any Chromium-based browser
+- **Required Permissions**: 
+  - Camera access for facial emotion detection
+  - Microphone access for voice analysis (optional, can be toggled)
+- **Web Audio API** support required for audio processing
+
+## 🔬 Technical Details
+
+### Audio Processing
+- MediaRecorder API captures microphone input in 2-second chunks
+- Web Audio API converts WebM to WAV format on the frontend
+- Librosa extracts audio features (RMS energy, zero-crossing rate, spectral centroid)
+- Voice stress indicators are calculated from audio energy and pitch
+
+### Emotion Fusion
+- Facial emotion → stress weight mapping (angry: 0.9, happy: 0.1, etc.)
+- Voice features → stress level calculation (0-1 scale)
+- Combined stress index = 70% facial + 30% voice (when enabled)
+- Three states: Calm (<0.3), Mild (0.3-0.6), High (>0.6)
 
 ## 🎯 Built For
 
